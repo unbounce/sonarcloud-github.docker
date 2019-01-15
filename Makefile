@@ -30,5 +30,5 @@ endif
 
 .PHONY: deps
 deps:
-	type $(docker.bin) > /dev/null 2>&1 || (echo "Install docker to continue."; exit 1)
+	@type $(docker.bin) > /dev/null 2>&1 || (echo "Install docker to continue."; exit 1)
 
