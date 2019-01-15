@@ -21,6 +21,8 @@ docker run \
   -v /path/to/project/code/:/github/workspace/ \
   --env SONAR_LOGIN=... \
   --env GITHUB_REF=<branch name> \
+  --env SONAR_ORG=... \
+  --env SONAR_PROJECT_KEY=... \
   --env-file env.list \
   sonarcloud-github
 ```
