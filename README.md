@@ -7,7 +7,7 @@ Github Actions architecture.
 
 ## Releases
 
-Go to hub.docker.com/unbounce/sonarcloud to download the pre-built Docker
+Go to https://hub.docker.com/unbounce/sonarcloud-github to download the pre-built Docker
 image.
 
 ## Running Locally
