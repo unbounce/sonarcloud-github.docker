@@ -5,6 +5,12 @@ Technically it will work anywhere, but it sets specific directory
 structure and environment variables that are designed to conform to the
 Github Actions architecture.
 
+It should be noted that this Docker image is for use with a wide
+variety of programming languages, but there are some languages (Java,
+TypeScript) that need extra libraries installed.  In the case of these
+special languages, this Docker image will not work and the Sonar scanner
+binary will error out.
+
 ## Releases
 
 Go to https://hub.docker.com/r/unbounce/sonarcloud-github to download
