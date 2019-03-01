@@ -29,13 +29,13 @@ RUN mkdir -p /tmp/sonar && unzip /tmp/scanner.zip -d /tmp/sonar
 RUN rm /tmp/scanner.zip
 
 #
+# Add in the custom script that allows us to manipulate the GITHUB_REF
+# env var so that the data in SonarCloud is clean.
+#
+ADD scanner.sh /root/scanner.sh
+
+#
 # Ensure the scanner is started at container runtime
 #
-CMD /tmp/sonar/sonar-scanner-$SONAR_VERSION-linux/bin/sonar-scanner \
-  -Dsonar.projectKey=$SONAR_PROJECT_KEY \
-  -Dsonar.organization=$SONAR_ORG \
-  -Dsonar.sources=/github/workspace \
-  -Dsonar.host.url=https://sonarcloud.io \
-  -Dsonar.login=$SONAR_LOGIN \
-  -Dsonar.branch.name=$GITHUB_REF
+CMD /root/scanner.sh
 
