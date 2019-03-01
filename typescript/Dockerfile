@@ -33,16 +33,20 @@ ADD $SONAR_DOWNLOAD_URL /tmp/scanner.zip
 RUN mkdir -p /tmp/sonar && unzip /tmp/scanner.zip -d /tmp/sonar
 RUN rm /tmp/scanner.zip
 
+#
+# The scanner needs to know where the Node libraries are installed.
+# Not sure why, it's just a formality.
+#
 ENV NODE_PATH /usr/local/lib/node_modules
+
+#
+# Add in the custom script that allows us to manipulate the GITHUB_REF
+# env var so that the data in SonarCloud is clean.
+#
+ADD scanner.sh /root/scanner.sh
 
 #
 # Ensure the scanner is started at container runtime
 #
-CMD /tmp/sonar/sonar-scanner-$SONAR_VERSION-linux/bin/sonar-scanner \
-  -Dsonar.projectKey=$SONAR_PROJECT_KEY \
-  -Dsonar.organization=$SONAR_ORG \
-  -Dsonar.sources=/github/workspace \
-  -Dsonar.host.url=https://sonarcloud.io \
-  -Dsonar.login=$SONAR_LOGIN \
-  -Dsonar.branch.name=$GITHUB_REF
+CMD /root/scanner.sh
 
