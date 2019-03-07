@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BRANCH=${GITHUB_REF##refs/head/}
+BRANCH=${GITHUB_REF##refs/heads/}
 
 echo "Running scanner on branch: $BRANCH"
 echo "Sending results to: $SONAR_ORG/$SONAR_PROJECT_KEY"
